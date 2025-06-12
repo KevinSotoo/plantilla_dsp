@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario de Productos</title>
+</head>
+<body>
+    <h1>Productos</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <strong>{{ producto.nombre }}</strong> - {{ producto.descripcion }} - ${{ producto.precio }}
+                {% if producto.imagen_path %}
+                    <br>
+                    <img src="/{{ producto.imagen_path }}" width="100">
+                {% endif %}
+            </li>
+        {% else %}
+            <li>No hay productos registrados.</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Categorías</h1>
+    <ul>
+        {% for categoria in categorias %}
+            <li>
+                <strong>{{ categoria.nombre }}</strong>: {{ categoria.descripcion }}
+            </li>
+        {% else %}
+            <li>No hay categorías registradas.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
