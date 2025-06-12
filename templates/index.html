@@ -1,33 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Inventario de Productos</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background: #f7f7f7;}
+        nav { background: #222; color: #fff; padding: 1em 0; }
+        nav ul { list-style: none; display: flex; justify-content: center; margin: 0; padding: 0;}
+        nav ul li { margin: 0 1.5em; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: bold;}
+        nav ul li a:hover { text-decoration: underline; }
+        footer { background: #222; color: #fff; text-align: center; padding: 1em 0; position: fixed; left:0; bottom:0; width:100%; }
+        main { padding: 2em 1em 4em 1em; max-width: 800px; margin: 0 auto; background: #fff; border-radius: 8px; min-height: 80vh;}
+        h1 { border-bottom: 1px solid #ddd; padding-bottom: 0.3em;}
+        img { border-radius: 5px; margin-top: 0.5em;}
+        ul { padding-left: 1.5em;}
+    </style>
 </head>
 <body>
-    <h1>Productos</h1>
-    <ul>
-        {% for producto in productos %}
-            <li>
-                <strong>{{ producto.nombre }}</strong> - {{ producto.descripcion }} - ${{ producto.precio }}
-                {% if producto.imagen_path %}
-                    <br>
-                    <img src="/{{ producto.imagen_path }}" width="100">
-                {% endif %}
-            </li>
-        {% else %}
-            <li>No hay productos registrados.</li>
-        {% endfor %}
-    </ul>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/producto/">Productos (API)</a></li>
+            <li><a href="/categoria/">Categorías (API)</a></li>
+            <!-- Puedes agregar más enlaces aquí -->
+        </ul>
+    </nav>
 
-    <h1>Categorías</h1>
-    <ul>
-        {% for categoria in categorias %}
-            <li>
-                <strong>{{ categoria.nombre }}</strong>: {{ categoria.descripcion }}
-            </li>
-        {% else %}
-            <li>No hay categorías registradas.</li>
-        {% endfor %}
-    </ul>
+    <main>
+        <h1>Productos</h1>
+        <ul>
+            {% for producto in productos %}
+                <li>
+                    <strong>{{ producto.nombre }}</strong> - {{ producto.descripcion }} - ${{ producto.precio }}
+                    {% if producto.imagen_path %}
+                        <br>
+                        <img src="/{{ producto.imagen_path }}" width="100">
+                    {% endif %}
+                </li>
+            {% else %}
+                <li>No hay productos registrados.</li>
+            {% endfor %}
+        </ul>
+
+        <h1>Categorías</h1>
+        <ul>
+            {% for categoria in categorias %}
+                <li>
+                    <strong>{{ categoria.nombre }}</strong>: {{ categoria.descripcion }}
+                </li>
+            {% else %}
+                <li>No hay categorías registradas.</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; {{ 2025 }} Tu Inventario FastAPI &mdash; Desarrollado por KevinSotoo
+    </footer>
 </body>
 </html>
